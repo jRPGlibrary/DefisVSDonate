@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Défis VS Donate</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-header {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid #ff6b6b;
+            margin-bottom: 30px;
+        }
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn-validate {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-reject {
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .pending-challenges {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .login-form {
+            max-width: 400px;
+            margin: 100px auto;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #e0e0e0;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #64ffda, #1de9b6);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginSection" class="login-form">
+            <h2>🔐 Accès Admin</h2>
+            <p>Connecte-toi pour gérer les défis</p>
+            <input type="password" id="adminPassword" class="login-input" placeholder="Mot de passe admin">
+            <button onclick="login()" class="login-btn">Se connecter</button>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanel" style="display: none;">
+            <!-- Header -->
+            <header class="header admin-header">
+                <div class="header-content">
+                    <h1 class="logo">🛠️ Panel Admin - Défis VS Donate</h1>
+                    <p class="tagline">Gère les défis en attente de validation</p>
+                    <button onclick="logout()" style="position: absolute; top: 20px; right: 20px; background: #ff6b6b; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Déconnexion</button>
+                </div>
+            </header>
+
+            <!-- Pending Challenges -->
+            <section class="pending-challenges">
+                <h2>⏳ Défis en attente de validation</h2>
+                <div id="pendingChallengesGrid" class="challenges-grid">
+                    <!-- Pending challenges will be loaded here -->
+                </div>
+            </section>
+
+            <!-- All Challenges -->
+            <section class="challenges-section">
+                <h2>📋 Tous les Défis</h2>
+                
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="all">Tous</button>
+                    <button class="tab-btn" data-filter="pending">En Attente</button>
+                    <button class="tab-btn" data-filter="active">Validés</button>
+                    <button class="tab-btn" data-filter="completed">Terminés</button>
+                    <button class="tab-btn" data-filter="rejected">Refusés</button>
+                </div>
+                
+                <div class="challenges-grid" id="allChallengesGrid">
+                    <!-- All challenges will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

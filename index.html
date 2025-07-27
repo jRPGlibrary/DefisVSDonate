@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défis VS Donate 🎮💸</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">🎮 Défis VS Donate 💸</h1>
+                <p class="tagline">Propose un défi, fais une donation, regarde-moi galérer ! 🔥</p>
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-number" id="total-challenges">0</div>
+                    <div class="stat-label">Défis Validés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number" id="total-donations">€0</div>
+                    <div class="stat-label">Total Donations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-number" id="active-challenges">0</div>
+                    <div class="stat-label">En Cours</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-number" id="completed-challenges">0</div>
+                    <div class="stat-label">Terminés</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenge Submission -->
+        <section class="submit-section">
+            <div class="submit-card">
+                <h2>🔥 Propose ton défi !</h2>
+                <p>Envoie ton défi avec une donation PayPal pour le valider</p>
+                
+                <form class="challenge-form" id="challengeForm">
+                    <div class="form-group">
+                        <label for="challenger-name">Ton pseudo :</label>
+                        <input type="text" id="challenger-name" name="challengerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenge-title">Titre du défi :</label>
+                        <input type="text" id="challenge-title" name="challengeTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenge-description">Description détaillée :</label>
+                        <textarea id="challenge-description" name="challengeDescription" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donation-amount">Montant de la donation (€) :</label>
+                        <select id="donation-amount" name="donationAmount" required>
+                            <option value="">Choisis le montant</option>
+                            <option value="5">5€ - Défi Chill</option>
+                            <option value="10">10€ - Défi Normal</option>
+                            <option value="20">20€ - Défi Hardcore</option>
+                            <option value="50">50€ - Défi Impossible</option>
+                            <option value="custom">Autre montant</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="custom-amount-group" style="display: none;">
+                        <label for="custom-amount">Montant personnalisé (€) :</label>
+                        <input type="number" id="custom-amount" name="customAmount" min="1">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-rocket"></i>
+                        Envoyer le défi
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Challenges List -->
+        <section class="challenges-section">
+            <h2>📋 Tableau des Défis</h2>
+            
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all">Tous</button>
+                <button class="tab-btn" data-filter="pending">En Attente</button>
+                <button class="tab-btn" data-filter="active">En Cours</button>
+                <button class="tab-btn" data-filter="completed">Terminés</button>
+                <button class="tab-btn" data-filter="rejected">Refusés</button>
+            </div>
+            
+            <div class="challenges-grid" id="challengesGrid">
+                <!-- Challenges will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with 💜 pour la commu | Contact: <a href="mailto:contentcreator.jrpglibrary@gmail.com">contentcreator.jrpglibrary@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=Abd75ZDkWAoigyqmYRdwyRJ3bM34t9BT3CeDEjWc6rXq-OC0ZzIaFME_k4HlNWZxHUH8t1iHG7DpsDId&currency=EUR"></script>
+    <script src="admin.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
