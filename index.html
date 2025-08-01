@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <div class="container">
@@ -57,6 +58,11 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="challenger-email">Ton email :</label>
+                        <input type="email" id="challenger-email" name="challengerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="challenge-title">Titre du défi :</label>
                         <input type="text" id="challenge-title" name="challengeTitle" required>
                     </div>
@@ -84,9 +90,12 @@
                     </div>
                     
                     <button type="submit" class="submit-btn">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-paper-plane"></i>
                         Envoyer le défi
                     </button>
+                    <p style="text-align: center; margin-top: 15px; color: #b0b0b0; font-size: 0.9rem;">
+                        💡 Le paiement ne sera demandé qu'après validation de votre défi par l'administrateur
+                    </p>
                 </form>
             </div>
         </section>
@@ -116,7 +125,6 @@
 
     <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=Abd75ZDkWAoigyqmYRdwyRJ3bM34t9BT3CeDEjWc6rXq-OC0ZzIaFME_k4HlNWZxHUH8t1iHG7DpsDId&currency=EUR"></script>
-    <script src="admin.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

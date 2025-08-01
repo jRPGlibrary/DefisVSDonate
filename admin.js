@@ -15,9 +15,12 @@ let pendingChallenges = [];
 
 // Initialisation de l'admin
 document.addEventListener('DOMContentLoaded', function() {
-    checkLoginStatus();
-    if (ADMIN_CONFIG.isLoggedIn) {
-        loadAdminData();
+    // Vérifier si nous sommes sur la page admin
+    if (document.getElementById('loginSection') && document.getElementById('adminPanel')) {
+        checkLoginStatus();
+        if (ADMIN_CONFIG.isLoggedIn) {
+            loadAdminData();
+        }
     }
 });
 
@@ -51,13 +54,20 @@ function checkLoginStatus() {
 }
 
 function showLoginForm() {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('adminPanel').style.display = 'none';
+    const loginSection = document.getElementById('loginSection');
+    const adminPanel = document.getElementById('adminPanel');
+    
+    if (loginSection) loginSection.style.display = 'block';
+    if (adminPanel) adminPanel.style.display = 'none';
 }
 
 function showAdminPanel() {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
+    const loginSection = document.getElementById('loginSection');
+    const adminPanel = document.getElementById('adminPanel');
+    
+    if (loginSection) loginSection.style.display = 'none';
+    if (adminPanel) adminPanel.style.display = 'block';
+    loadAdminData();
 }
 
 function loadAdminData() {
@@ -157,6 +167,7 @@ function createAdminChallengeCard(challenge, showActions = false) {
                     <div class="challenge-title">${challenge.title}</div>
                     <div class="challenge-meta">
                         <span>👤 ${challenge.challenger}</span>
+                        <span>📧 ${challenge.email || 'Non spécifié'}</span>
                         <span class="challenge-status ${statusClass}">${statusText}</span>
                     </div>
                 </div>
@@ -178,8 +189,8 @@ function sendPayPalLinkEmail(challenge) {
     const body = encodeURIComponent(
         `Bonjour ${challenge.challenger},\n\nVotre défi intitulé "${challenge.title}" a été validé par l'administrateur !\n\nMerci de procéder au paiement de ${challenge.amount}€ via le lien PayPal suivant :\n\nhttps://www.paypal.com/paypalme/VSDonate/${challenge.amount}\n\nAprès réception du paiement, votre défi sera affiché publiquement.\n\nMerci pour votre participation !\n\nL'équipe VSDonate`
     );
-    // Ouvre le client mail par défaut (mailto)
-    window.open(`mailto:?subject=${subject}&body=${body}`);
+    // Ouvre le client mail par défaut (mailto) avec l'email du challenger
+    window.open(`mailto:${encodeURIComponent(challenge.email)}?subject=${subject}&body=${body}`);
 }
 
 function validateChallenge(challengeId) {
@@ -320,6 +331,7 @@ function addPendingChallenge(challengeData) {
         title: challengeData.challengeTitle,
         description: challengeData.challengeDescription,
         challenger: challengeData.challengerName,
+        email: challengeData.challengerEmail, // Ajout de l'email du challenger
         amount: parseFloat(challengeData.donationAmount),
         status: 'pending',
         date: new Date().toISOString().split('T')[0],
